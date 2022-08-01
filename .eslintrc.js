@@ -6,6 +6,9 @@ module.exports = {
   extends: [
     'airbnb',
     'plugin:@typescript-eslint/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -18,6 +21,16 @@ module.exports = {
     'no-console': 0,
     'class-methods-use-this': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
   },
   ignorePatterns: ['webpack.config.js'],
 };
