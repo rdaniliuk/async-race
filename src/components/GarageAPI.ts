@@ -13,8 +13,9 @@ export default class GarageAPI {
 
   async getCars() {
     const response = await fetch(`${this.baseUrl}${this.path.garage}`);
-    const data = await response.json();
-    return data;
+    const carsList = await response.json();
+    console.log(carsList);
+    return carsList;
   }
 
   async getWinners() {
@@ -38,6 +39,28 @@ export default class GarageAPI {
         body: JSON.stringify(newCar),
       },
     );
+    console.log(response);
+    const data = await response.json();
+    return data;
+  }
+
+  async deleteCar(id: number) {
+    const response = await fetch(`${this.baseUrl}${this.path.garage}/${id}`, {
+      method: 'DELETE',
+    });
+    console.log(response, 'delete');
+    const data = await response.json();
+    return data;
+  }
+
+  async updateCar(id: number, updateCar: {name: string, color: string}) {
+    const response = await fetch(`${this.baseUrl}${this.path.garage}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateCar),
+    });
     console.log(response);
     const data = await response.json();
     return data;

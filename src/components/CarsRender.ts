@@ -2,10 +2,10 @@ import GarageAPI from './GarageAPI';
 import renderCarImage from './carImage';
 
 export default class CarRender {
-  renderTemplate(color: string) {
+  renderTemplate(color: string, id: number) {
     return `<div class="button__change">
-    <button id="select" >select</button>
-    <button id="remove" >remove</button>
+    <button id="select.${id}" >select</button>
+    <button id="remove.${id}" >remove</button>
     </div>
     <p id="car-name"></p>
     <div class="button__drive">
@@ -25,10 +25,10 @@ export default class CarRender {
     cars.classList.add('cars');
     if (carsList !== null) {
       carsList.forEach((elem: {name: string, color: string, id: number}) => {
-        const { color } = elem;
+        const { color, id } = elem;
         const car = document.createElement('div');
         car.classList.add('car');
-        car.innerHTML = this.renderTemplate(color);
+        car.innerHTML = this.renderTemplate(color, id);
         body.append(car);
         const carName = car.querySelector<HTMLParagraphElement>('#car-name');
         if (carName !== null) {

@@ -4,6 +4,8 @@ import TitleRender from './components/TitleRender';
 import CarRender from './components/CarsRender';
 import switchPage from './components/pageSwitch';
 import createNewCar from './components/createNewCar';
+import removeCar from './components/removeCar';
+import updateCar from './components/updateCar';
 
 const nav = new NavRender();
 const title = new TitleRender();
@@ -14,6 +16,8 @@ title.render();
 cars.render();
 switchPage();
 createNewCar();
+removeCar();
+updateCar();
 
 // const car = document.querySelector<HTMLImageElement>('#car');
 // const buttonStart = document.querySelector<HTMLButtonElement>('#start');
