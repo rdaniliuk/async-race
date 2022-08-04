@@ -1,16 +1,15 @@
 import GarageAPI from './GarageAPI';
 
-// const carId = document.querySelector(`#${id}`);
-async function removeCar(/* id:number */) {
+async function removeCar() {
   const { body } = document;
   const garageAPI = new GarageAPI();
   body.addEventListener('click', async (event) => {
-    await garageAPI.deleteCar(1);
-    const b = await garageAPI.getCars();
-    const a = event.target;
-    console.log(a, 'target');
-    console.log(b, 'after delete');
-    return a;
+    const removeButton = <HTMLButtonElement>event.target;
+    const buttonId = removeButton.id.split('.')[1];
+    if (removeButton.id.split('.')[0] === 'remove') {
+      await garageAPI.deleteCar(+buttonId);
+      await garageAPI.getCars();
+    }
   });
 }
 export default removeCar;

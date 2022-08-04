@@ -1,13 +1,14 @@
 export default class GarageAPI {
   baseUrl: string;
 
-  path: {garage: string, winners: string};
+  path: {garage: string, winners: string, startStop: string};
 
   constructor() {
     this.baseUrl = 'http://localhost:3000';
     this.path = {
       garage: '/garage',
       winners: '/winners',
+      startStop: '/engine',
     };
   }
 
@@ -61,8 +62,18 @@ export default class GarageAPI {
       },
       body: JSON.stringify(updateCar),
     });
-    console.log(response);
+    console.log(response, 'update');
     const data = await response.json();
+    return data;
+  }
+
+  async startStop(id: number, status: string) {
+    const response = await fetch(`${this.baseUrl}${this.path.startStop}?id=${id}&status=${status}`, {
+      method: 'PATCH',
+    });
+    console.log(response, 'startStop');
+    const data = await response.json();
+    console.log(data, 'startStopDATA');
     return data;
   }
 }

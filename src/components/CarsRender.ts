@@ -2,6 +2,12 @@ import GarageAPI from './GarageAPI';
 import renderCarImage from './carImage';
 
 export default class CarRender {
+  cars: Array<{name: string, color: string, id: number}>;
+
+  constructor() {
+    this.cars = [];
+  }
+
   renderTemplate(color: string, id: number) {
     return `<div class="button__change">
     <button id="select.${id}" >select</button>
@@ -20,6 +26,7 @@ export default class CarRender {
   async render() {
     const garageAPI = new GarageAPI();
     const carsList = await garageAPI.getCars();
+    this.cars = carsList;
     const { body } = document;
     const cars = document.createElement('div');
     cars.classList.add('cars');

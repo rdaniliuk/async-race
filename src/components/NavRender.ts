@@ -8,15 +8,15 @@ export default class NavRender {
          <button id="winnersButton">to Winners</button>  
       </div>
       <form name="formCreate" class="create">
-         <input value="sd" type="text" name="nameInput">
+         <input  type="text" name="nameInput">
          <input type="color" name="colorInput">
          <button type="submit" id="create" name="submitButton" >create</button>
       </form>
-      <div class="update">
-         <input type="text">
-         <input type="color">
-         <button id="update" >update</button>
-      </div>
+      <form name="formUpdate" id="formUpdate">
+         <input  type="text" name="nameInput" id="nameInput">
+         <input type="color" name="colorInput">
+         <button type="submit" id="update" >update</button>
+      </form>
       <div class="simulation">
          <button id="race" >race</button>
          <button id="reset" >reset</button>
