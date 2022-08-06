@@ -5,8 +5,8 @@ export default class WinnersTitleRender {
 
   constructor() {
     this.template = `
-    <p id="winners"></p>
-    <p id="page"></p>
+    <p class="title" id="winners"></p>
+    <p class="title" id="page"></p>
        `;
   }
 
@@ -14,11 +14,11 @@ export default class WinnersTitleRender {
     const garageAPI = new GarageAPI();
     const winnersCount = await garageAPI.getWinners();
     const pageNumber = 1;
-    const { body } = document;
+    const nav = document.querySelector('.nav');
     const title = document.createElement('div');
     title.innerHTML = this.template;
     title.classList.add('page__title');
-    body.prepend(title);
+    nav?.append(title);
     const winners = title.querySelector<HTMLParagraphElement>('#winners');
     const page = title.querySelector<HTMLParagraphElement>('#page');
     if (winners !== null && page !== null) {

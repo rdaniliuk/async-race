@@ -4,7 +4,6 @@ function createCarName() {
     inputName.addEventListener('input', (event) => {
       if (event.target !== null) {
         const nameValue = (<HTMLInputElement>event.target).value;
-        console.log(nameValue);
       }
     });
   }

@@ -1,8 +1,54 @@
+body{
+   background-color: #5a8c94;
+}
+p{
+   margin: 0px;
+}
+button{
+   border: none;
+   border-radius: 5px;
+}
+button:hover{
+   background-color: #ffa79a;
+}
+.title{
+   font-size: 1.2rem;
+   font-weight: 800;
+   margin-top: 5px;
+}
+.simulation{
+   margin-top: 10px;
+}
+.car{
+   margin: 10px 0px 10px 0px;
+   padding: 10px;
+   border: 1px solid #000;
+   border-radius: 10px;
+}
+.car__info{
+   display: flex;
+   gap: 5PX;
+   margin-bottom: 5px;
+}
+.car__name{
+   font-weight: 800;
+   text-align: center;
+}
+.car__button{
+   background-color: #78ab82;
+}
+.select__button{
+background-color: #ffefa2;
+}
+
 .item__wrapper{
    min-width: 100%;
 }
 
 .item__car{
+   background-image: url('./img/finish.png');
+   background-repeat: no-repeat;
+   background-position: right 100px top 99%;  
    display: flex;
    border-bottom: 1px dashed #000;
    img{
@@ -16,3 +62,6 @@
    grid-template-columns: 13% 30% 30% 13% 13%;
 }
 
+.table{
+   display: flex;
+}

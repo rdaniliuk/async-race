@@ -9,17 +9,19 @@ export default class CarRender {
   }
 
   renderTemplate(color: string, id: number) {
-    return `<div class="button__change">
-    <button id="select.${id}" >select</button>
-    <button id="remove.${id}" >remove</button>
+    return `<div class="car__info">
+    <div class="button__change">
+    <button class="select__button" id="select.${id}" >select</button>
+    <button class="select__button" id="remove.${id}" >remove</button>
     </div>
-    <p id="car-name"></p>
+    <p class="car__name" id="car-name"></p>
+    </div>
     <div class="button__drive">
-    <button id="start">A</button>
-    <button id="stop">B</button>
+    <button class="car__button" id="start.${id}">A</button>
+    <button class="car__button" disabled id="stop.${id}">B</button>
     </div>
     <div class="item__car">
-    ${renderCarImage(color)}
+    ${renderCarImage(color, id)}
     </div>`;
   }
 

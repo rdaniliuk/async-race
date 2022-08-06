@@ -1,9 +1,11 @@
+import PageButtonRender from './PageButtonRender';
 import NavRender from './NavRender';
 import TitleRender from './TitleRender';
 import CarRender from './CarsRender';
 import WinnersTableRender from './WinnersTableRender';
 import WinnersTitleRender from './WinnersTitleRender';
 
+const pageButton = new PageButtonRender();
 const nav = new NavRender();
 const title = new TitleRender();
 const cars = new CarRender();
@@ -18,6 +20,7 @@ function switchPage() {
   if (garageButton && winnersButton) {
     garageButton.addEventListener('click', () => {
       body.innerHTML = '';
+      pageButton.render();
       nav.render();
       title.render();
       cars.render();
@@ -25,8 +28,9 @@ function switchPage() {
     });
     winnersButton.addEventListener('click', () => {
       body.innerHTML = '';
-      winners.render();
+      pageButton.render();
       winnersTitle.render();
+      winners.render();
       switchPage();
     });
   }

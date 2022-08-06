@@ -15,7 +15,6 @@ async function updateCar() {
             formUpdate.nameInput.value = car.name;
             formUpdate.colorInput.value = car.color;
             formUpdate.nameInput.focus();
-            console.log(formUpdate);
           }
           const updateSubmit = formUpdate.querySelector('#update');
           if (updateSubmit) {

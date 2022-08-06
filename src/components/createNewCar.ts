@@ -13,7 +13,8 @@ async function createNewCar() {
           color: form.colorInput.value.toString(),
         };
         await garageAPI.createCar(newCar);
-        console.log(await garageAPI.getCars());
+        form.nameInput.value = '';
+        form.colorInput.value = '#000000';
       }
     });
   }

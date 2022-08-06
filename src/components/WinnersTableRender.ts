@@ -2,7 +2,7 @@ import GarageAPI from './GarageAPI';
 import renderCarImage from './carImage';
 
 export default class WinnersTableRender {
-  renderTemplate(color: string) {
+  renderTemplate() {
     return `
       <div class="header">
       <p>Number</p>
@@ -11,7 +11,7 @@ export default class WinnersTableRender {
       <p>Wins</p>
       <p>Best time</p>
       <p></p>
-      <p>${renderCarImage(color)}</p>
+      <p></p>
       <p></p>
       <p></p>
       <p></p>
@@ -20,10 +20,11 @@ export default class WinnersTableRender {
   }
 
   async render() {
+    const table = this.renderTemplate();
     const garageAPI = new GarageAPI();
     const carsList = await garageAPI.getCars();
     const winnersList = await garageAPI.getWinners();
-    const { body } = document;
+    const nav = document.querySelector('.nav');
     const winnersTable = document.createElement('div');
     winnersTable.classList.add('table');
     if (carsList !== null && winnersList !== null) {
@@ -34,14 +35,15 @@ export default class WinnersTableRender {
         const carId = document.createElement('p');
         carId.innerHTML = (index + 1).toString();
         const carImage = document.createElement('p');
-        carImage.innerHTML = this.renderTemplate(color);
+        carImage.innerHTML = renderCarImage(color, id);
         const carName = document.createElement('p');
         carName.innerHTML = name;
         const carWins = document.createElement('p');
         carWins.innerHTML = wins.toString();
         const carTime = document.createElement('p');
         carTime.innerHTML = time.toString();
-        body.append(winnersTable);
+        nav?.append(table);
+        nav?.append(winnersTable);
         winnersTable.append(carId, carImage, carName, carWins, carTime);
       });
     }

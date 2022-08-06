@@ -15,7 +15,6 @@ export default class GarageAPI {
   async getCars() {
     const response = await fetch(`${this.baseUrl}${this.path.garage}`);
     const carsList = await response.json();
-    console.log(carsList);
     return carsList;
   }
 
@@ -40,7 +39,6 @@ export default class GarageAPI {
         body: JSON.stringify(newCar),
       },
     );
-    console.log(response);
     const data = await response.json();
     return data;
   }
@@ -49,7 +47,6 @@ export default class GarageAPI {
     const response = await fetch(`${this.baseUrl}${this.path.garage}/${id}`, {
       method: 'DELETE',
     });
-    console.log(response, 'delete');
     const data = await response.json();
     return data;
   }
@@ -62,7 +59,6 @@ export default class GarageAPI {
       },
       body: JSON.stringify(updateCar),
     });
-    console.log(response, 'update');
     const data = await response.json();
     return data;
   }
@@ -73,7 +69,15 @@ export default class GarageAPI {
     });
     console.log(response, 'startStop');
     const data = await response.json();
-    console.log(data, 'startStopDATA');
+    return data;
+  }
+
+  async driveMod(id: number, status: string) {
+    const response = await fetch(`${this.baseUrl}${this.path.startStop}?id=${id}&status=${status}`, {
+      method: 'PATCH',
+    });
+    console.log(response, 'driveMod');
+    const data = await response.json();
     return data;
   }
 }
