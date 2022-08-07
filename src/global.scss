@@ -65,3 +65,21 @@ background-color: #ffefa2;
 .table{
    display: flex;
 }
+
+.winnerWindow{
+   width: 200px;
+   height: 200px;
+   background-color: #ffa79a;
+   position: absolute;
+   top: 30%;
+   margin-left: auto;
+   margin-right: auto;
+   left: 0;
+   right: 0;
+   border-radius: 50%;
+   align-items: center;
+   display: flex;
+   justify-content: center;
+   font-weight: 800;
+   font-size: 1.3rem;
+}

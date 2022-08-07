@@ -32,13 +32,14 @@ export default class CarRender {
     const { body } = document;
     const cars = document.createElement('div');
     cars.classList.add('cars');
+    body.append(cars);
     if (carsList !== null) {
       carsList.forEach((elem: {name: string, color: string, id: number}) => {
         const { color, id } = elem;
         const car = document.createElement('div');
         car.classList.add('car');
         car.innerHTML = this.renderTemplate(color, id);
-        body.append(car);
+        cars.append(car);
         const carName = car.querySelector<HTMLParagraphElement>('#car-name');
         if (carName !== null) {
           carName.innerHTML = elem.name;

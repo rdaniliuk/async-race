@@ -18,6 +18,7 @@ async function startStopButton() {
         const roadDistance = carRoad.offsetWidth - CAR__LENGTH;
         const response = await garageAPI.startStop(+carId, 'started');
         const duration = response.distance / response.velocity;
+        console.log(duration, 'duration');
         document.getElementById(`start.${carId}`)?.setAttribute('disabled', 'true');
         document.getElementById(`stop.${carId}`)?.removeAttribute('disabled');
         carDrive({

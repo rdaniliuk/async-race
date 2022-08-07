@@ -4,15 +4,26 @@ interface CarDriveProps {
   distance: number,
   carImage: HTMLElement,
   duration: number,
+  timeResult?: {[key: string]: number}
+  onFinish?: (carId: number) => void
+}
+
+function getWinner(timeResult: {[key: string]: number}) {
+  const timeArray = Object.entries(timeResult);
+  timeArray.sort((a, b) => a[1] - b[1]);
+  return +timeArray[0][0];
 }
 
 function carDrive({
-  duration, distance, carImage, carId, requestAnimationIds,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  duration, distance, carImage, carId, requestAnimationIds, timeResult = {}, onFinish = () => {},
 }: CarDriveProps) {
+  const START = 0;
+  const FRAMES = 5.8;
+
   if (carImage) {
-    const START = 0;
     let currentX = START;
-    const framesCount = duration / 5.8;
+    const framesCount = duration / FRAMES;
     const dx = (distance - START) / framesCount;
     const tick = () => {
       currentX += dx;
@@ -22,6 +33,8 @@ function carDrive({
         const requestAnimationId = requestAnimationFrame(tick);
         // eslint-disable-next-line no-param-reassign
         requestAnimationIds[carId] = requestAnimationId;
+      } else if (getWinner(timeResult) === carId) {
+        onFinish(carId);
       }
     };
     tick();

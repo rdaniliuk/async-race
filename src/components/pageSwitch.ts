@@ -4,6 +4,8 @@ import TitleRender from './TitleRender';
 import CarRender from './CarsRender';
 import WinnersTableRender from './WinnersTableRender';
 import WinnersTitleRender from './WinnersTitleRender';
+import generateCars from './generateCars';
+import race from './race';
 
 const pageButton = new PageButtonRender();
 const nav = new NavRender();
@@ -25,6 +27,8 @@ function switchPage() {
       title.render();
       cars.render();
       switchPage();
+      generateCars();
+      race();
     });
     winnersButton.addEventListener('click', () => {
       body.innerHTML = '';

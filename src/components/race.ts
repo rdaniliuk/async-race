@@ -3,7 +3,24 @@ import carDrive from './carDrive';
 import stopDrive from './stopDrive';
 import checkEngine from './checkEngine';
 
+async function onFinish(carId: number) {
+  const garageAPI = new GarageAPI();
+  const carsList = await garageAPI.getCars();
+  let carName;
+  carsList.forEach((car: {id: number, color: string, name: string}) => {
+    if (car.id === carId) {
+      carName = car.name;
+    }
+  });
+  const { body } = document;
+  const winnerWindow = document.createElement('p');
+  winnerWindow.innerHTML = `Winner is ${carName}`;
+  winnerWindow.classList.add('winnerWindow');
+  body.append(winnerWindow);
+}
+
 async function race() {
+  const timeResult: {[key: string]: number} = {};
   const requestAnimationIds: {[key: string]: number} = {};
   const raceButton = document.querySelector('#race');
   const raceResetButton = document.querySelector('#reset');
@@ -19,12 +36,19 @@ async function race() {
         const roadDistance = carRoad.offsetWidth - CAR__LENGTH;
         const response = await garageAPI.startStop(car.id, 'started');
         const duration = response.distance / response.velocity;
+        timeResult[car.id] = duration;
         raceButton.setAttribute('disabled', 'true');
         raceResetButton?.removeAttribute('disabled');
         carDrive({
-          duration, distance: roadDistance, carImage, carId: car.id, requestAnimationIds,
+          duration,
+          distance: roadDistance,
+          carImage,
+          carId: car.id,
+          requestAnimationIds,
+          timeResult,
+          onFinish,
         });
-        checkEngine(car.id, requestAnimationIds);
+        await checkEngine(car.id, requestAnimationIds, timeResult);
       }
     });
   });
