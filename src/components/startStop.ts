@@ -1,5 +1,7 @@
 import GarageAPI from './GarageAPI';
 import carDrive from './carDrive';
+import stopDrive from './stopDrive';
+import checkEngine from './checkEngine';
 
 async function startStopButton() {
   const requestAnimationIds: {[key: string]: number} = {};
@@ -21,22 +23,11 @@ async function startStopButton() {
         carDrive({
           duration, distance: roadDistance, carImage, carId: +carId, requestAnimationIds,
         });
-        try {
-          await garageAPI.driveMod(+carId, 'drive');
-        } catch (err: any) {
-          if (err.message === 'Unexpected token C in JSON at position 0') {
-            cancelAnimationFrame(requestAnimationIds[carId]);
-            await garageAPI.startStop(+carId, 'stopped');
-          }
-        }
+        checkEngine(+carId, requestAnimationIds);
       }
     } else if (carButton.id.split('.')[0] === 'stop') {
       if (carImage) {
-        cancelAnimationFrame(requestAnimationIds[carId]);
-        const response = await garageAPI.startStop(+carId, 'stopped');
-        carImage.style.transform = `translateX(${response.velocity}px)`;
-        document.getElementById(`stop.${carId}`)?.setAttribute('disabled', 'true');
-        document.getElementById(`start.${carId}`)?.removeAttribute('disabled');
+        stopDrive(requestAnimationIds, +carId, carImage);
       }
     }
   });
