@@ -67,7 +67,6 @@ export default class GarageAPI {
     const response = await fetch(`${this.baseUrl}${this.path.startStop}?id=${id}&status=${status}`, {
       method: 'PATCH',
     });
-    console.log(response, 'startStop');
     const data = await response.json();
     return data;
   }
@@ -76,7 +75,6 @@ export default class GarageAPI {
     const response = await fetch(`${this.baseUrl}${this.path.startStop}?id=${id}&status=${status}`, {
       method: 'PATCH',
     });
-    console.log(response, 'driveMod');
     const data = await response.json();
     return data;
   }

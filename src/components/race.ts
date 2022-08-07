@@ -22,6 +22,14 @@ async function race() {
         carDrive({
           duration, distance: roadDistance, carImage, carId: car.id, requestAnimationIds,
         });
+        try {
+          await garageAPI.driveMod(car.id, 'drive');
+        } catch (err: any) {
+          if (err.message === 'Unexpected token C in JSON at position 0') {
+            cancelAnimationFrame(requestAnimationIds[car.id]);
+            await garageAPI.startStop(car.id, 'stopped');
+          }
+        }
       }
     });
   });
@@ -30,7 +38,8 @@ async function race() {
       const carImage = document.getElementById(`image.${car.id}`);
       if (carImage) {
         cancelAnimationFrame(requestAnimationIds[car.id]);
-        carImage.style.transform = 'translateX(0px)';
+        const response = await garageAPI.startStop(car.id, 'stopped');
+        carImage.style.transform = `translateX(${response.velocity}px)`;
         raceResetButton.setAttribute('disabled', 'true');
         raceButton?.removeAttribute('disabled');
       }
