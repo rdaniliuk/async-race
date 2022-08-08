@@ -78,4 +78,37 @@ export default class GarageAPI {
     const data = await response.json();
     return data;
   }
+
+  async getWinner(id: number) {
+    const response = await fetch(`${this.baseUrl}${this.path.winners}/${id}`);
+    const data = await response.json();
+    return data;
+  }
+
+  async createWinner(newWinner: {id: number, wins: number, time: number}) {
+    const response = await fetch(
+      `${this.baseUrl}${this.path.winners}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newWinner),
+      },
+    );
+    const data = await response.json();
+    return data;
+  }
+
+  async updateWinner(id: number, updateWinner: {wins: number, time: number}) {
+    const response = await fetch(`${this.baseUrl}${this.path.winners}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateWinner),
+    });
+    const data = await response.json();
+    return data;
+  }
 }

@@ -29,6 +29,8 @@ async function generateCars() {
           color: `#${(`${Math.random().toString(16)}000000`).substring(2, 8).toUpperCase()}`,
         };
         garageAPI.createCar(newCar);
+        // eslint-disable-next-line no-restricted-globals
+        location.reload();
       }
     });
   }

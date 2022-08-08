@@ -6,6 +6,9 @@ import WinnersTableRender from './WinnersTableRender';
 import WinnersTitleRender from './WinnersTitleRender';
 import generateCars from './generateCars';
 import race from './race';
+import createNewCar from './createNewCar';
+import updateCar from './updateCar';
+import startStopButton from './startStop';
 
 const pageButton = new PageButtonRender();
 const nav = new NavRender();
@@ -29,6 +32,11 @@ function switchPage() {
       switchPage();
       generateCars();
       race();
+      createNewCar();
+      updateCar();
+      startStopButton();
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
     });
     winnersButton.addEventListener('click', () => {
       body.innerHTML = '';

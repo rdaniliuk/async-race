@@ -9,6 +9,8 @@ async function removeCar() {
     if (removeButton.id.split('.')[0] === 'remove') {
       await garageAPI.deleteCar(+buttonId);
       await garageAPI.getCars();
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
     }
   });
 }

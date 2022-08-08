@@ -3,7 +3,7 @@ import carDrive from './carDrive';
 import stopDrive from './stopDrive';
 import checkEngine from './checkEngine';
 
-async function onFinish(carId: number) {
+async function onFinish(carId: number, duration: number) {
   const garageAPI = new GarageAPI();
   const carsList = await garageAPI.getCars();
   let carName;
@@ -17,6 +17,17 @@ async function onFinish(carId: number) {
   winnerWindow.innerHTML = `Winner is ${carName}`;
   winnerWindow.classList.add('winnerWindow');
   body.append(winnerWindow);
+  const winner = await garageAPI.getWinner(carId);
+  if (!winner.id) {
+    console.log('the first victory, congratulations');
+    await garageAPI.createWinner({ id: carId, wins: 1, time: duration });
+  } else if (winner.id) {
+    if (winner.time > duration) {
+      await garageAPI.updateWinner(carId, { wins: winner.wins + 1, time: duration });
+    } else {
+      await garageAPI.updateWinner(carId, { wins: winner.wins + 1, time: winner.time });
+    }
+  }
 }
 
 async function race() {
@@ -57,6 +68,7 @@ async function race() {
       const carImage = document.getElementById(`image.${car.id}`);
       if (carImage) {
         stopDrive(requestAnimationIds, car.id, carImage);
+        document.querySelector('.winnerWindow')?.remove();
       }
     });
   });
