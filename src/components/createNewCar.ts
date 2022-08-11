@@ -13,7 +13,6 @@ async function createNewCar() {
           color: form.colorInput.value.toString(),
         };
         await garageAPI.createCar(newCar);
-        await garageAPI.createWinner({ id: 2, wins: 1, time: 2 });
         form.nameInput.value = '';
         form.colorInput.value = '#000000';
         // eslint-disable-next-line no-restricted-globals

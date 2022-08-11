@@ -29,6 +29,8 @@ async function updateCar() {
                 await garageAPI.updateCar(+buttonId, updateCarObj);
                 formUpdate.nameInput.value = '';
                 formUpdate.colorInput.value = '#000000';
+                // eslint-disable-next-line no-restricted-globals
+                location.reload();
               }
             });
           }

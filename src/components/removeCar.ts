@@ -8,6 +8,7 @@ async function removeCar() {
     const buttonId = removeButton.id.split('.')[1];
     if (removeButton.id.split('.')[0] === 'remove') {
       await garageAPI.deleteCar(+buttonId);
+      await garageAPI.deleteWinner(+buttonId);
       await garageAPI.getCars();
       // eslint-disable-next-line no-restricted-globals
       location.reload();

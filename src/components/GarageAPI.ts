@@ -40,6 +40,7 @@ export default class GarageAPI {
       },
     );
     const data = await response.json();
+    console.log(data, 'create');
     return data;
   }
 
@@ -107,6 +108,14 @@ export default class GarageAPI {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updateWinner),
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  async deleteWinner(id: number) {
+    const response = await fetch(`${this.baseUrl}${this.path.winners}/${id}`, {
+      method: 'DELETE',
     });
     const data = await response.json();
     return data;
