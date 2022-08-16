@@ -4,10 +4,10 @@ import TitleRender from './TitleRender';
 import CarRender from './CarsRender';
 import WinnersTableRender from './WinnersTableRender';
 import WinnersTitleRender from './WinnersTitleRender';
-import generateCars from './generateCars';
+import generateCars from './onGenereteCars';
 import race from './race';
 import createNewCar from './createNewCar';
-import updateCar from './updateCar';
+import updateCar from './onUpdateCar';
 import startStopButton from './startStop';
 
 const pageButton = new PageButtonRender();

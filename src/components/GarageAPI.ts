@@ -14,13 +14,13 @@ export default class GarageAPI {
 
   async getCars() {
     const response = await fetch(`${this.baseUrl}${this.path.garage}`);
-    const carsList = await response.json();
+    const carsList: [{name: string, color: string, id: number}] = await response.json();
     return carsList;
   }
 
   async getWinners() {
     const response = await fetch(`${this.baseUrl}${this.path.winners}`);
-    const data = await response.json();
+    const data: [{id: number, wins: number, time: number }] = await response.json();
     return data;
   }
 
@@ -39,8 +39,7 @@ export default class GarageAPI {
         body: JSON.stringify(newCar),
       },
     );
-    const data = await response.json();
-    console.log(data, 'create');
+    const data: {name: string, color: string, id: number} = await response.json();
     return data;
   }
 
@@ -60,7 +59,7 @@ export default class GarageAPI {
       },
       body: JSON.stringify(updateCar),
     });
-    const data = await response.json();
+    const data: {name: string, color: string, id: number} = await response.json();
     return data;
   }
 
@@ -68,7 +67,7 @@ export default class GarageAPI {
     const response = await fetch(`${this.baseUrl}${this.path.startStop}?id=${id}&status=${status}`, {
       method: 'PATCH',
     });
-    const data = await response.json();
+    const data: {velocity: number, distance: number} = await response.json();
     return data;
   }
 
@@ -82,7 +81,7 @@ export default class GarageAPI {
 
   async getWinner(id: number) {
     const response = await fetch(`${this.baseUrl}${this.path.winners}/${id}`);
-    const data = await response.json();
+    const data: {id: number, wins: number, time: number } = await response.json();
     return data;
   }
 
@@ -97,7 +96,7 @@ export default class GarageAPI {
         body: JSON.stringify(newWinner),
       },
     );
-    const data = await response.json();
+    const data: {id: number, wins: number, time: number} = await response.json();
     return data;
   }
 
@@ -109,7 +108,7 @@ export default class GarageAPI {
       },
       body: JSON.stringify(updateWinner),
     });
-    const data = await response.json();
+    const data: {id: number, wins: number, time: number} = await response.json();
     return data;
   }
 

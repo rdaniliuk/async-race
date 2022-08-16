@@ -5,9 +5,9 @@ import CarRender from './CarsRender';
 import switchPage from './pageSwitch';
 import createNewCar from './createNewCar';
 import removeCar from './removeCar';
-import updateCar from './updateCar';
+import updateCar from './onUpdateCar';
 import startStopButton from './startStop';
-import generateCars from './generateCars';
+import generateCars from './onGenereteCars';
 import race from './race';
 
 async function initApplication() {

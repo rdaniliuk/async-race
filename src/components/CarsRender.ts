@@ -34,7 +34,7 @@ export default class CarRender {
     cars.classList.add('cars');
     body.append(cars);
     if (carsList !== null) {
-      carsList.forEach((elem: {name: string, color: string, id: number}) => {
+      carsList.forEach((elem) => {
         const { color, id } = elem;
         const car = document.createElement('div');
         car.classList.add('car');

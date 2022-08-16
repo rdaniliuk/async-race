@@ -10,7 +10,7 @@ async function updateCar() {
     if (removeButton.id.split('.')[0] === 'select') {
       const formUpdate = <HTMLFormElement>document.querySelector('#formUpdate');
       if (formUpdate) {
-        carList.forEach((car: {name: string, color: string, id: number}) => {
+        carList.forEach((car) => {
           if (car.id === +buttonId) {
             formUpdate.nameInput.value = car.name;
             formUpdate.colorInput.value = car.color;

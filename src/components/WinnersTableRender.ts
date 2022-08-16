@@ -33,11 +33,14 @@ export default class WinnersTableRender {
     winnersTable.classList.add('table');
     nav?.append(winnersTable);
     winnersTable.innerHTML = this.renderTemplate();
-    if (carsList !== null && winnersList !== null) {
-      winnersList.forEach((elem: {id: number, wins: number, time: number }, index: number) => {
+    if (carsList && winnersList) {
+      winnersList.forEach((elem, index: number) => {
         const { id, wins, time } = elem;
-        const { color, name } = carsList
-          .find((car: {name: string, color: string, id: number}) => car.id === id);
+        const currentCar = carsList.find((car) => car.id === id);
+        if (!currentCar) {
+          return;
+        }
+        const { name, color } = currentCar;
         const carId = document.createElement('p');
         carId.innerHTML = (index + 1).toString();
         document.querySelector('.number')?.append(carId);

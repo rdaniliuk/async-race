@@ -9,7 +9,7 @@ async function checkEngine(
   try {
     await garageAPI.driveMod(+carId, 'drive');
   } catch (err) {
-    if ((err as Error).name === 'SyntaxError') {
+    if ((err as Error)) {
       cancelAnimationFrame(requestAnimationIds[carId]);
       // eslint-disable-next-line no-param-reassign
       delete timeResult?.[carId];

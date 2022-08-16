@@ -1,6 +1,8 @@
 import GarageAPI from './GarageAPI';
 
 async function generateCars() {
+  const BUTTON_CAR_GENERATE_ID = 'random';
+  const RANDOM_CAR_QUANTITY = 100;
   const garageAPI = new GarageAPI();
   const carBrand = [
     'Acura', 'Alfa Romeo', 'Alpine', 'Apollo', 'Apple', 'Aston Martin', 'Audi', 'Automobili Pininfarina', 'Bentley', 'BMW', 'Bollinger',
@@ -19,11 +21,11 @@ async function generateCars() {
     'IS 200t', 'LS 500h', 'RX', 'ES 200/250/350', 'Hatchback', 'CX-5', 'Sedan', 'CX-30', 'CX-9', 'CX-3', 'MX-5 Roadster', 'Phantom', 'Camry', 'Polo',
     'Cullinan', 'Ghost', 'Dawn', 'Duster', 'Arkana', 'Sandero', 'Logan', 'Trafic Fourgon', 'Logan MCV', 'Captur', 'Kadjar', 'RAV4', 'Rio', 'Creta', 'Solaris',
   ];
-  const generate = document.getElementById('random');
+  const generate = document.getElementById(BUTTON_CAR_GENERATE_ID);
   if (generate) {
     generate.addEventListener('click', async (event) => {
       event.preventDefault();
-      for (let i = 0; i < 100; i += 1) {
+      for (let i = 0; i < RANDOM_CAR_QUANTITY; i += 1) {
         const newCar = {
           name: `${carBrand[Math.floor(Math.random() * carBrand.length)]} ${carModal[Math.floor(Math.random() * carModal.length)]}`,
           color: `#${(`${Math.random().toString(16)}000000`).substring(2, 8).toUpperCase()}`,

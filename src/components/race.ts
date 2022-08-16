@@ -7,7 +7,7 @@ async function onFinish(carId: number, duration: number) {
   const garageAPI = new GarageAPI();
   const carsList = await garageAPI.getCars();
   let carName;
-  carsList.forEach((car: {id: number, color: string, name: string}) => {
+  carsList.forEach((car) => {
     if (car.id === carId) {
       carName = car.name;
     }
@@ -19,7 +19,6 @@ async function onFinish(carId: number, duration: number) {
   body.append(winnerWindow);
   const winner = await garageAPI.getWinner(carId);
   if (!winner.id) {
-    console.log('the first victory, congratulations');
     await garageAPI.createWinner({ id: carId, wins: 1, time: duration });
   } else if (winner.id) {
     if (winner.time > duration) {
@@ -40,7 +39,7 @@ async function race() {
   const CAR__LENGTH = 100;
 
   raceButton?.addEventListener('click', async () => {
-    carsList.forEach(async (car: {name:string, color: string, id: number}) => {
+    carsList.forEach(async (car) => {
       const carImage = document.getElementById(`image.${car.id}`);
       if (carImage) {
         const carRoad = <HTMLDivElement>carImage.parentNode;
@@ -64,7 +63,7 @@ async function race() {
     });
   });
   raceResetButton?.addEventListener('click', async () => {
-    carsList.forEach(async (car: {name:string, color: string, id: number}) => {
+    carsList.forEach(async (car) => {
       const carImage = document.getElementById(`image.${car.id}`);
       if (carImage) {
         stopDrive(requestAnimationIds, car.id, carImage);
